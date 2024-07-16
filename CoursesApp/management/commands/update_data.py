@@ -39,9 +39,10 @@ class Command(BaseCommand):
         db = client.coursesdb
 
         # Ensure the collection is a time-series collection with a 10-minute expiration
+        collection_name = "normalized_data"
         try:
             db.create_collection(
-                "normalized_data",
+                collection_name,
                 timeseries={
                     "timeField": "timestamp",
                     "metaField": "metadata",
@@ -51,18 +52,25 @@ class Command(BaseCommand):
             )
         except Exception as e:
             if "already exists" not in str(e):
-                raise
+                logger.error(f"Error creating collection: {e}")
+                return
+            else:
+                logger.info("Collection already exists, skipping creation.")
 
         # Step 4: Insert normalized data into MongoDB
         data_dict = data.to_dict("records")
-        for record in data_dict:
+        for idx, record in enumerate(data_dict):
+            record["CourseId"] = idx + 1  # Ensure unique CourseId
             record["timestamp"] = datetime.utcnow()  # Add current timestamp
             record["metadata"] = {}  # Add any metadata if necessary
 
-        db.normalized_data.insert_many(data_dict)
+        # Clear existing data to avoid duplicates (if necessary)
+        db[collection_name].delete_many({})
+
+        db[collection_name].insert_many(data_dict)
 
         # Ensure TTL index is created
-        db.normalized_data.create_index(
+        db[collection_name].create_index(
             [("timestamp", ASCENDING)], expireAfterSeconds=600
         )
 

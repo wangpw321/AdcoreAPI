@@ -15,8 +15,8 @@ class Courses(models.Model):
     Price = models.DecimalField(max_digits=10, decimal_places=2)
     Currency = models.CharField(max_length=10)
 
-    class Meta:
-        db_table = "coursesapp_courses"
+    # class Meta:
+    #     db_table = "coursesapp_courses"
         
     class Meta:
         db_table = 'normalized_data'

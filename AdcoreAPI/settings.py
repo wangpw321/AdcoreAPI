@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "CoursesApp.apps.CoursesAppConfig",
-    "django_cron",
+    # "django_cron",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
