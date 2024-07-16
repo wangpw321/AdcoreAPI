@@ -16,4 +16,4 @@ class Courses(models.Model):
     Currency = models.CharField(max_length=10)
 
     class Meta:
-        db_table = "normalized_data"
+        db_table = "coursesapp_courses"
