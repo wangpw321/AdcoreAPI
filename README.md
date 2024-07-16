@@ -1,9 +1,14 @@
-GET http://3.144.30.70:8000/course
-POST http://3.144.30.70:8000/course/
-PUT http://3.144.30.70:8000/course/{CourseId}/
-DELETE http://3.144.30.70:8000/course/{CourseId}/
+**GET** http://3.144.30.70:8000/course
+
+**POST** http://3.144.30.70:8000/course/
+
+**PUT** http://3.144.30.70:8000/course/{CourseId}/
+
+**DELETE** http://3.144.30.70:8000/course/{CourseId}/
 
 Sample data
+
+```
     {
         "CourseId":"",
         "University": "MacEwan University",
@@ -16,3 +21,4 @@ Sample data
         "Price": "6941.53",
         "Currency": "CAD"
     }
+```
