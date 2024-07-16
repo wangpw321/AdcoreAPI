@@ -17,3 +17,6 @@ class Courses(models.Model):
 
     class Meta:
         db_table = "coursesapp_courses"
+        
+    class Meta:
+        db_table = 'normalized_data'
