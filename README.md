@@ -2,7 +2,7 @@
 
 **POST** http://3.144.30.70:8000/course/
 
-**PUT** http://3.144.30.70:8000/course/{CourseId}/
+**PUT** http://3.144.30.70:8000/course/
 
 **DELETE** http://3.144.30.70:8000/course/{CourseId}/
 
